@@ -1,0 +1,23 @@
+
+.main{
+    height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+bg-gray
+.imgBlock{
+    width: 300px;
+    height: 300px;
+}
+
+.logo{
+    width: 320px;
+    height: 200px;
+}
+.sign{
+    width: 400px;
+    height: 40px;
+    background: aquamarine;
+}
+
