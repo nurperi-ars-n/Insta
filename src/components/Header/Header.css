@@ -16,44 +16,46 @@
   display: flex;
   justify-content: space-between;
 }
-input{
-    border-color:   rgb(243, 243, 243);
-    background-color: rgb(243, 243, 243)  ;
-    border-radius: 3px;
-    border: 1px solid rgb(216, 213, 213);
-    height: 30px;
-    width: 200px;
-    text-align: center;
-  
+input {
+  border-color: rgb(243, 243, 243);
+  background-color: rgb(243, 243, 243);
+  border-radius: 3px;
+  border: 1px solid rgb(216, 213, 213);
+  height: 30px;
+  width: 200px;
+  text-align: center;
 }
-input:active{
-    border: 1px solid rgb(216, 213, 213);
+input:active {
+  border: 1px solid rgb(216, 213, 213);
 }
-Link:active{
-    text-decoration: none;
-    color: rgb(216, 213, 213);
+Link:active {
+  text-decoration: none;
+  color: rgb(216, 213, 213);
 }
-Link:link{
-    text-decoration: none;
-    color: rgb(216, 213, 213);
-
+Link:link {
+  text-decoration: none;
+  color: rgb(216, 213, 213);
 }
-Link:visited{
-    text-decoration: none;
-    color: rgb(216, 213, 213);
+Link:visited {
+  text-decoration: none;
+  color: rgb(216, 213, 213);
 }
-Link:hover{
-    text-decoration: none;
-    color: rgb(216, 213, 213);
+Link:hover {
+  text-decoration: none;
+  color: rgb(216, 213, 213);
 }
-Link:focus{
-    text-decoration: none;
-    color: rgb(216, 213, 213);
+Link:focus {
+  text-decoration: none;
+  color: rgb(216, 213, 213);
 }
-Link{
-    text-decoration: none;
-    color: black;
-    background-color: black;
+Link {
+  text-decoration: none;
+  color: black;
+  background-color: black;
 }
-
-
+.header_profile img {
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: red;
+}
