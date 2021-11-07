@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "firebase/firestore";
 import "firebase/auth";
 import firebase from "firebase";
-import { login , change_token } from "../../../store/actions";
+import { login, change_token } from "../../../store/actions";
 
 firebase.initializeApp({
   apiKey: "AIzaSyB5TPytRkCGFNFV6bm6aIwQs6zrAUeYXMk",
@@ -22,10 +22,8 @@ export const SignUp = () => {
   const dispatch = useDispatch();
 
   const isAuth = useSelector((state) => state.isAuth);
-  const state = useSelector((state) => state);
 
   console.log(isAuth);
- 
 
   if (isAuth) return <Redirect to="/" />;
 
@@ -38,19 +36,16 @@ export const SignUp = () => {
       .currentUser.getIdTokenResult()
       .then((idTokenResult) => {
         dispatch(login(idTokenResult.claims));
-        dispatch(change_token(idTokenResult.token))
-        localStorage.setItem('token' , JSON.stringify(idTokenResult))
+        dispatch(change_token(idTokenResult.token));
+        localStorage.setItem("token", JSON.stringify(idTokenResult));
       });
-      
   };
 
   return (
     <div>
       <button onClick={authorization}>
         <span>Sign In Google</span>{" "}
-       
       </button>
-     
     </div>
   );
 };

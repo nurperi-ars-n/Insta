@@ -1,14 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import HomeIcon from "@mui/icons-material/Home";
-import logo from "../../assets/imgs/logo.png";
-import ForumIcon from "@mui/icons-material/Forum";
-import "./Header.css";
 import AddIcon from "@mui/icons-material/Add";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link } from "react-router-dom";
+import ForumIcon from "@mui/icons-material/Forum";
+
+import logo from "../../assets/imgs/logo.png";
+
+import "./Header.css";
 
 export const Header = () => {
+  const user = useSelector((state) => state.user);
+  const history = useHistory();
   return (
     <div>
       <header className="container">
@@ -33,8 +38,14 @@ export const Header = () => {
             <Link to="/likes">
               <FavoriteBorderIcon className="icon" />
             </Link>
+
             <Link to="/profile">
-              <AccountCircleIcon className="icon" />
+              <div className="header_profile">
+                <img
+                  src={user.picture || ""}
+                  onClick={() => history.push("/profile")}
+                />
+              </div>
             </Link>
           </div>
         </div>

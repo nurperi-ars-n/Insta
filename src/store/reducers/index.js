@@ -13,12 +13,14 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         isAuth: true,
+        
       };
       case LOG_OUT:
           return{
               ...state,
               user:null,
               isAuth:false,
+              token:"",
               
           }
           case CHANGE_TOKEN:
