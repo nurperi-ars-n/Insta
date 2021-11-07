@@ -1,8 +1,9 @@
-import { LOGIN, LOG_OUT } from "../actions";
+import { LOGIN, LOG_OUT , CHANGE_TOKEN } from "../actions";
 
 const initialState = {
   user: null,
   isAuth: false,
+  token:""
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ export const rootReducer = (state = initialState, action) => {
               isAuth:false,
               
           }
+          case CHANGE_TOKEN:
+            return{
+              ...state,
+              token:action.payload
+            }
     default:
       return state;
   }
