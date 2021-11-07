@@ -17,21 +17,19 @@ export const MainLayout = () => {
   
   return (
     <>
-    { isAuth ? (<div>
+   <div>
       <Header />
       <Switch>
         <Route path="/login" component={LogIn} />
-        <Route path="/signup" component={SignUp} />
+        <Route path="/signUp" component={SignUp} />
         <Route path="/addPost" component={AddPost} />
         <Route path="/message" component={Message} />
         <Route path="/profile" component={Profile} />
         <Route path="/likes" component={Likes} />
         <Route  path="/" component={Home} />
       </Switch>
-    </div>):(
-      <Redirect to="/signup" />
-    )
-    }
+    </div>
+    
     </>
    
   );
