@@ -1,5 +1,4 @@
 import { LOGIN, LOG_OUT } from "../actions";
-
 const initialState = {
   user: null,
   isAuth: false,
