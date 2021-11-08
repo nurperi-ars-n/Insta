@@ -2,6 +2,7 @@ export const LOGIN = 'LOGIN'
 export const LOG_OUT = 'LOG_OUT'
 export const CHANGE_TOKEN = 'CHANGE_TOKEN'
 
+
 export const login = (user) => ({
     type:LOGIN,
     payload:user
