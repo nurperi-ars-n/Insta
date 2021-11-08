@@ -17,7 +17,7 @@ export const MainLayout = () => {
   
   return (
     <>
-    {!isAuth ? (<div>
+    { isAuth ? (<div>
       <Header />
       <Switch>
         <Route path="/login" component={LogIn} />
