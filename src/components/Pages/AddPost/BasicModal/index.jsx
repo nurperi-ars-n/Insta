@@ -1,15 +1,16 @@
-import  React,{useState} from "react";
+import React, { useState } from "react";
 // import storage from "../../../../firebaseConfig";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import PermMediaOutlinedIcon from "@mui/icons-material/PermMediaOutlined";
 import "./BasicModal.css";
-import {Post} from "../Postt";
-import {Input} from "@mui/material";
+import { Post } from "../Postt";
+import { Input } from "@mui/material";
 
-
+import firebase from "firebase/app";
+import "firebase/storage";
+// import {Post} from "./Postt";
 
 const style = {
   position: "absolute",
@@ -23,45 +24,73 @@ const style = {
   p: 7,
   borderRadius: "3%",
   borderColor: "white",
-
-
 };
 
-export const BasicModal = () => {
+function initializeFirebase(){    
+  var config = {
+     apiKey: "myApiKey",
+     authDomain: "myAuthDomain",
+     databaseURL: "myDatabaseUrl",
+     storageBucket: "myStorageBocket",
+     messagingSenderId: "idhere"   
+    };   
+    //initialize firebase  
+    firebase.initializeApp(config);  
+ }
 
+const storage = firebase.storage();
+
+
+
+
+export const BasicModal = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const [image, setImg] = useState(null)
 
- //  const loadImage = (e) => {
- //    console.log(e.target.files[0])
- // if(e.target.files[0])
- //   setImg(e.target.files[0])
- //
- //  }
- //  const uploadImg = () => {
- //  const uploadTask = storage.ref(`images/${image?.name}`).put(image)
- //    uploadTask.on(
- //        "state.changed",
- //        snapshot => {},
- //        error => {
- //          console.log(error)
- //        },
- //        () => {
- //          storage
- //              .ref("images")
- //              .child(image?.name)
- //              .getDownloadURL()
- //              .then(url => {
- //                console.log(url)
- //              })
- //        }
- //    )
- //  }
- //  console.log(image, 'img')
+  const [image, setImage] = useState(null);
+  const [url , setUrl] = useState("")
+  const [progress , setProgress] = useState(0)
+
+
+  const handleOnchange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100 
+        );
+        setProgress(progress)
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url1 => {
+            console.log(url1);
+            setUrl(url1)
+          });
+      }
+    );
+  };
+
+  console.log("image: ", image);
+  console.log(url);
+
   return (
-    <div >
+    <div>
+      <progress value={progress} max="100"/>
       <Button onClick={handleOpen}>Add Post</Button>
       <Modal
         open={open}
@@ -73,15 +102,17 @@ export const BasicModal = () => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Создание публикации
           </Typography>
-          {/*<div className="box-images">*/}
-          {/*  {" "}*/}
-          {/*  <PermMediaOutlinedIcon className="images" />*/}
-          {/*</div>*/}
-            <Post/>
-            <Input  placeholder={'Напишите описание '}/>
-            <Button>ADD POST</Button>
+
+          <input type="file" onChange={handleOnchange} />
+          {/* <Post  onChange = {handleOnchange}/> */}
+          <Input placeholder={"Напишите описание "} />
+          <Button onClick={handleUpload}>SAVE POST</Button>
         </Box>
       </Modal>
+      <br/>
+      {url}
+      <br/>
+      <img src={url} alt="firebase-image"/>
     </div>
   );
 };
