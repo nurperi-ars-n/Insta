@@ -1,4 +1,5 @@
 import React from "react";
+import './LayoutSignUp.css'
 import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import "firebase/firestore";
@@ -43,9 +44,43 @@ export const SignUp = () => {
 
   return (
     <div>
-      <button onClick={authorization}>
-        <span>Sign In Google</span>{" "}
-      </button>
+        <div>
+            <div className="container">
+                <div className="img">
+                </div>
+                <div className="login-content">
+                    <form action="#">
+                        <h2 className="title">Welcome</h2>
+                        <div className="input-div one">
+                            <div className="i">
+                                <i className="fas fa-user"></i>
+                            </div>
+                            <div className="div">
+                                <h5>Email</h5>
+                                <input type="text" className="input"/>
+                            </div>
+                        </div>
+                        <div className="input-div pass">
+                            <div className="i">
+                            </div>
+                            <div className="div">
+                                <h5>Password</h5>
+                                <input type="password" className="input"/>
+                            </div>
+                        </div>
+                        <button onClick={authorization}>
+                            <span>Sign In with Google</span>{" "}
+                        </button>
+                        <input type="submit" className="btn" value="Login"/>
+                    </form>
+                </div>
+            </div>
+            <button onClick={authorization}>
+                <span>Sign In Google</span>{" "}
+            </button>
+        </div>
+
+
     </div>
   );
 };
